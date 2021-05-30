@@ -1,0 +1,36 @@
+{
+  "name": "node-typescript-boilerplate",
+  "version": "0.0.0",
+  "description": "Small project for practicing Data Structures Algorithms.",
+  "engines": {
+    "node": ">= 14.16"
+  },
+  "dependencies": {
+    "tslib": "~2.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "~26.0.23",
+    "@types/node": "~14.14.44",
+    "@typescript-eslint/eslint-plugin": "~4.23.0",
+    "@typescript-eslint/parser": "~4.23.0",
+    "eslint": "~7.26.0",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-plugin-jest": "~24.3.6",
+    "jest": "~26.6.3",
+    "prettier": "~2.3.0",
+    "rimraf": "~3.0.2",
+    "ts-jest": "~26.5.6",
+    "tsutils": "~3.21.0",
+    "typescript": "~4.2.4"
+  },
+  "scripts": {
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "author": "Javier Segovia",
+  "license": "MIT"
+}
