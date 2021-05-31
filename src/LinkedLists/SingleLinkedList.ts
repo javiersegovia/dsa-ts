@@ -1,6 +1,6 @@
 import { LinkedList, ListNode } from './LinkedList'
 
-export class SingleLinkedList extends LinkedList {
+export class SingleLinkedList extends LinkedList<SingleLinkedList, ListNode> {
   get(index: number): ListNode | undefined {
     if (index < 0 || this.length <= index) return undefined
 
@@ -17,15 +17,14 @@ export class SingleLinkedList extends LinkedList {
     return undefined
   }
 
-  set(value: ListNode['value'], index: number): boolean {
+  set(value: ListNode['value'], index: number): ListNode | undefined {
     const node = this.get(index)
 
     if (node) {
       node.value = value
-      return true
     }
 
-    return false
+    return node
   }
 
   push(item: ListNode | ListNode['value']): SingleLinkedList {
@@ -166,22 +165,19 @@ export class SingleLinkedList extends LinkedList {
     return this
   }
 
-  /**
-   * This is just for testing purposes!
-   * Using an array kind of negates the benefits of using a Linked List.
-   */
-  values(): ListNode['value'][] {
-    if (!this.head) return []
-    if (this.length === 1) return [this.head.value]
 
-    const listValues = []
-    let current = this.head
+  // values(): ListNode['value'][] {
+  //   if (!this.head) return []
+  //   if (this.length === 1) return [this.head.value]
 
-    while (current) {
-      listValues.push(current.value)
-      current = current.next
-    }
+  //   const listValues = []
+  //   let current = this.head
 
-    return listValues
-  }
+  //   while (current) {
+  //     listValues.push(current.value)
+  //     current = current.next
+  //   }
+
+  //   return listValues
+  // }
 }

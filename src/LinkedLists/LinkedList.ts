@@ -6,7 +6,7 @@ export class ListNode {
   }
 }
 
-export abstract class LinkedList {
+export abstract class LinkedList<TList, TNode extends ListNode> {
   head: ListNode | null
   tail: ListNode | null
   length: number
@@ -17,14 +17,32 @@ export abstract class LinkedList {
     this.length = 0
   }
 
-  // abstract get(index: number): ListNode | undefined
-  // abstract set(value: ListNode['value'], index: number): boolean
-  // abstract push(node: ListNode): LinkedList
-  // abstract pop(): ListNode | undefined
-  // abstract insert(node: ListNode, index: number): ListNode | boolean
-  // abstract remove(index: number): ListNode | undefined
-  // abstract shift(): ListNode | undefined
-  // abstract unshift(node: ListNode): ListNode
-  // abstract reverse(): LinkedList
-  // abstract values(): ListNode['value'][]
+  abstract get(index: number): TNode | undefined
+  abstract set(value: TNode['value'], index: number): TNode | undefined
+  abstract push(item: TNode['value'] | TNode): TList
+  abstract pop(): TNode | undefined
+  abstract insert(item: TNode['value'] | TNode, index: number): TNode | boolean
+  abstract remove(index: number): TNode | undefined
+  abstract shift(): TNode | undefined
+  abstract unshift(item: TNode['value'] | TNode): TNode
+  abstract reverse(): TList
+
+  /**
+   * This is just for testing purposes!
+   * Using an array kind of negates the benefits of using a Linked List.
+   */
+
+  values(): ListNode['value'][] {
+    if (!this.head) return []
+
+    const list = []
+    let current = this.head
+
+    while (current) {
+      list.push(current.value)
+      current = current.next
+    }
+
+    return list
+  }
 }
