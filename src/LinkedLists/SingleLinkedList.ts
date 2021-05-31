@@ -158,17 +158,17 @@ export class SingleLinkedList {
     while (current) {
       if (prev === null) this.tail = current
 
-      // Save the next item in the list
-      const temp = current.next
+      /* Save the next item in the list */
+      const tempNext = current.next
 
-      // Link the current item with the previous one (Reverse!)
+      /* Link the current item with the previous one (Reverse!) */
       current.next = prev
 
-      // Set the previous item to the current one (Moves 1, important for next iteration)
+      /* Set the previous item to the current one (Moves 1, important for next iteration) */
       prev = current
 
-      // Set the current item to the next one (Moves 1, important for next iteration)
-      current = temp
+      /* Set the current item to the next one (Moves 1, important for next iteration) */
+      current = tempNext
 
       if (!current) this.head = prev
     }
@@ -176,6 +176,10 @@ export class SingleLinkedList {
     return this
   }
 
+  /**
+  * This is just for testing purposes!
+  * Using an array kind of negates the benefits of using a Linked List. 
+  */
   values(): ListNode['value'][] {
     if (!this.head) return []
     if (this.length === 1) return [this.head.value]
