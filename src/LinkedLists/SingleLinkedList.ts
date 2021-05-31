@@ -1,22 +1,6 @@
-export class ListNode {
-  next: ListNode | null
+import { LinkedList, ListNode } from './LinkedList'
 
-  constructor(public value: string | number) {
-    this.next = null
-  }
-}
-
-export class SingleLinkedList {
-  head: ListNode | null
-  tail: ListNode | null
-  length: number
-
-  constructor() {
-    this.head = null
-    this.tail = null
-    this.length = 0
-  }
-
+export class SingleLinkedList extends LinkedList {
   get(index: number): ListNode | undefined {
     if (index < 0 || this.length <= index) return undefined
 
@@ -44,17 +28,18 @@ export class SingleLinkedList {
     return false
   }
 
-  push(node: ListNode): SingleLinkedList {
-    if (!this.head) {
-      this.head = node
-      this.tail = node
-      this.length++
-    } else {
-      this.tail.next = node
-      this.tail = node
+  push(item: ListNode | ListNode['value']): SingleLinkedList {
+    const newNode = item instanceof ListNode ? item : new ListNode(item)
 
-      this.length++
+    if (!this.head) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      this.tail = newNode
     }
+
+    this.length++
 
     return this
   }
@@ -88,18 +73,21 @@ export class SingleLinkedList {
     return deleted
   }
 
-  insert(node: ListNode, index: number): ListNode | boolean {
+  insert(value: ListNode['value'], index: number): ListNode | boolean {
     if (index < 0 || index > this.length) return false
+
+    const newNode = new ListNode(value)
+
     if (this.length === index) {
-      this.push(node)
-      return node
+      this.push(newNode)
+      return newNode
     }
 
     const prev = this.get(index - 1)
     const temp = prev.next
 
-    prev.next = node
-    node.next = temp
+    prev.next = newNode
+    newNode.next = temp
 
     this.length++
 
@@ -135,18 +123,20 @@ export class SingleLinkedList {
     return removed
   }
 
-  unshift(node: ListNode): ListNode {
+  unshift(item: ListNode | ListNode['value']): ListNode {
+    const newNode = item instanceof ListNode ? item : new ListNode(item)
+
     if (!this.head) {
-      this.head = node
-      this.tail = node
+      this.head = newNode
+      this.tail = newNode
     } else {
-      node.next = this.head
-      this.head = node
+      newNode.next = this.head
+      this.head = newNode
     }
 
     this.length++
 
-    return node
+    return newNode
   }
 
   reverse(): SingleLinkedList {
@@ -177,9 +167,9 @@ export class SingleLinkedList {
   }
 
   /**
-  * This is just for testing purposes!
-  * Using an array kind of negates the benefits of using a Linked List. 
-  */
+   * This is just for testing purposes!
+   * Using an array kind of negates the benefits of using a Linked List.
+   */
   values(): ListNode['value'][] {
     if (!this.head) return []
     if (this.length === 1) return [this.head.value]

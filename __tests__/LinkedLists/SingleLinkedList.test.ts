@@ -1,12 +1,11 @@
-import {
-  SingleLinkedList,
-  ListNode,
-} from '../../src/LinkedLists/SingleLinkedList'
+import { LinkedList, ListNode } from '../../src/LinkedLists/LinkedList'
+import { SingleLinkedList } from '../../src/LinkedLists/SingleLinkedList'
 
 describe('SingleLinkedList', () => {
   it('should create a single list with the default values', () => {
     const list = new SingleLinkedList()
 
+    expect(list).toBeInstanceOf(LinkedList)
     expect(list.length).toEqual(0)
     expect(list.head).toEqual(null)
     expect(list.tail).toEqual(null)
@@ -14,94 +13,80 @@ describe('SingleLinkedList', () => {
 
   it('should be able to push new values', () => {
     const list = new SingleLinkedList()
-    const node1 = new ListNode(0)
-    const node2 = new ListNode(2)
-    const node3 = new ListNode(4)
 
-    list.push(node1)
-    list.push(node2)
-    list.push(node3)
+    list.push(0)
+    list.push(1)
+    list.push(2)
 
     expect(list.length).toEqual(3)
-    expect(list.head.value).toEqual(node1.value)
-    expect(list.tail.value).toEqual(node3.value)
+    expect(list.head.value).toEqual(0)
+    expect(list.tail.value).toEqual(2)
   })
 
   describe('pop', () => {
     it('should be able to pop (delete the last item)', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(4)
 
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(1)
+      list.push(2)
 
-      expect(list.pop().value).toEqual(node3.value)
+      expect(list.pop().value).toEqual(2)
       expect(list.length).toEqual(2)
-      expect(list.tail.value).toEqual(node2.value)
+      expect(list.tail.value).toEqual(1)
     })
 
     it('should return the correct tail and head when there is only one value', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
 
-      list.push(node1)
+      list.push(0)
       list.pop()
 
-      expect(list.pop()).toEqual(undefined)
       expect(list.head).toEqual(null)
       expect(list.tail).toEqual(null)
+
+      expect(list.pop()).toEqual(undefined)
     })
   })
 
   describe('remove', () => {
     it('should be able to remove an item by the index', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(3)
-      const node4 = new ListNode(4)
 
-      list.push(node0)
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
-      list.push(node4)
+      list.push(0)
+      list.push(1)
+      list.push(2)
+      list.push(3)
+      list.push(4)
 
       list.remove(0)
 
       expect(list.length).toEqual(4)
-      expect(list.head.value).toEqual(node1.value)
-      expect(list.tail.value).toEqual(node4.value)
+      expect(list.head.value).toEqual(1)
+      expect(list.tail.value).toEqual(4)
 
       list.remove(1)
 
       expect(list.length).toEqual(3)
-      expect(list.tail.value).toEqual(node4.value)
+      expect(list.tail.value).toEqual(4)
     })
 
     it('should return the correct head and tail if we remove them', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(4)
 
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(2)
+      list.push(4)
 
       list.remove(0)
 
-      expect(list.head.value).toEqual(node2.value)
-      expect(list.tail.value).toEqual(node3.value)
+      expect(list.head.value).toEqual(2)
+      expect(list.tail.value).toEqual(4)
 
       list.remove(1)
 
-      expect(list.head.value).toEqual(node2.value)
-      expect(list.tail.value).toEqual(node2.value)
+      expect(list.head.value).toEqual(2)
+      expect(list.tail.value).toEqual(2)
 
       list.remove(0)
 
@@ -114,21 +99,16 @@ describe('SingleLinkedList', () => {
     it('should remove the head and assign the new head', () => {
       const list = new SingleLinkedList()
 
-      const node1 = new ListNode(0)
-      const node2 = new ListNode(2)
-
-      list.push(node1)
-      list.push(node2)
-
+      list.push(0)
+      list.push(2)
       list.shift()
 
-      expect(list.head.value).toEqual(node2.value)
+      expect(list.head.value).toEqual(2)
     })
 
-    it('should return the value of the removed node', () => {
+    it('should return the removed node', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
-      list.push(node1)
+      list.push(0)
 
       expect(list.shift()).toBeInstanceOf(ListNode)
     })
@@ -141,23 +121,19 @@ describe('SingleLinkedList', () => {
 
     it('should handle the short-length cases for the new tail and head', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(4)
-
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(2)
+      list.push(4)
 
       list.shift()
 
-      expect(list.head.value).toEqual(node2.value)
-      expect(list.tail.value).toEqual(node3.value)
+      expect(list.head.value).toEqual(2)
+      expect(list.tail.value).toEqual(4)
 
       list.shift()
 
-      expect(list.head.value).toEqual(node3.value)
-      expect(list.tail.value).toEqual(node3.value)
+      expect(list.head.value).toEqual(4)
+      expect(list.tail.value).toEqual(4)
 
       list.shift()
 
@@ -169,38 +145,29 @@ describe('SingleLinkedList', () => {
   describe('insert', () => {
     it('should add a new ListNode at the specified index', () => {
       const list = new SingleLinkedList()
-      const node1 = new ListNode(0)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(4)
-      const node4 = new ListNode(6)
+      list.push(0)
+      list.push(2)
+      list.push(4)
 
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.insert(6, 1)
 
-      list.insert(node4, 1)
-
-      expect(list.head.next.value).toEqual(node4.value)
+      expect(list.head.next.value).toEqual(6)
     })
 
     it('should return false if the index is bigger than the list length', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
-      const node2 = new ListNode(2)
 
-      list.push(node0)
-      list.push(node1)
+      list.push(0)
+      list.push(1)
 
-      expect(list.insert(node2, 10)).toBeFalsy()
-      expect(list.tail.value).toEqual(node1.value)
+      expect(list.insert(2, 10)).toBeFalsy()
+      expect(list.tail.value).toEqual(1)
     })
 
     it('should return false if the index is less than zero', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
 
-      expect(list.insert(node0, -1)).toBeFalsy()
+      expect(list.insert(0, -1)).toBeFalsy()
       expect(list.head).toEqual(null)
     })
   })
@@ -208,20 +175,16 @@ describe('SingleLinkedList', () => {
   describe('unshift', () => {
     it('should add a new head', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
 
-      list.push(node0)
-      list.unshift(node1)
+      list.push(0)
+      list.unshift(1)
 
       expect(list.head.value).toEqual(1)
-      expect(list.tail.value).toEqual(node0.value)
+      expect(list.tail.value).toEqual(0)
     })
     it('should add a new tail if the item is the only one in the list', () => {
       const list = new SingleLinkedList()
-      const node2 = new ListNode(2)
-
-      list.unshift(node2)
+      list.unshift(2)
 
       expect(list.head.value).toEqual(2)
       expect(list.tail.value).toEqual(2)
@@ -231,15 +194,11 @@ describe('SingleLinkedList', () => {
   describe('get', () => {
     it('should return the ListNode by the index', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(3)
 
-      list.push(node0)
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(1)
+      list.push(2)
+      list.push(3)
 
       expect(list.get(3)?.value).toEqual(3)
     })
@@ -254,9 +213,8 @@ describe('SingleLinkedList', () => {
   describe('set', () => {
     it('should update the node if the index is found', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
 
-      list.push(node0)
+      list.push(0)
 
       expect(list.set(10, 0)).toBeTruthy()
       expect(list.head.value).toEqual(10)
@@ -272,15 +230,11 @@ describe('SingleLinkedList', () => {
   describe('reverse', () => {
     it('should reverse the linked list', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(3)
 
-      list.push(node0)
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(1)
+      list.push(2)
+      list.push(3)
 
       expect(list.values()).toEqual([0, 1, 2, 3])
       expect(list.reverse()).toBeInstanceOf(SingleLinkedList)
@@ -291,15 +245,11 @@ describe('SingleLinkedList', () => {
   describe('values', () => {
     it('should return all the values in the list', () => {
       const list = new SingleLinkedList()
-      const node0 = new ListNode(0)
-      const node1 = new ListNode(1)
-      const node2 = new ListNode(2)
-      const node3 = new ListNode(3)
 
-      list.push(node0)
-      list.push(node1)
-      list.push(node2)
-      list.push(node3)
+      list.push(0)
+      list.push(1)
+      list.push(2)
+      list.push(3)
 
       expect(list.values()).toEqual([0, 1, 2, 3])
     })
