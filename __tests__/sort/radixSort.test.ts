@@ -33,8 +33,9 @@ describe('getDigitFromLastIndex', () => {
 
 describe('radixSort', () => {
   it('should return the sorted array', () => {
-    expect(radixSort([1000, 250, 500, -500, -20, 205, 1])).toEqual(
-      expect.arrayContaining([-500, -20, 1, 205, 250, 500, 1000])
-    )
+    const array = [1000, 250, 500, 205, 1]
+    const expected = [1, 205, 250, 500, 1000]
+
+    expect(radixSort(array)).toEqual(expected)
   })
 })

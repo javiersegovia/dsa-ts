@@ -5,6 +5,6 @@ describe('swapIndex', () => {
     const arr = [5, 2, 1, 4]
     swapIndex(arr, 0, 3)
 
-    expect(arr).toEqual(expect.arrayContaining([4, 2, 1, 5]))
+    expect(arr).toEqual([4, 2, 1, 5])
   })
 })

@@ -7,9 +7,7 @@ describe('merge two sorted arrays', () => {
 
     const expected = [1, 2, 2, 3, 3, 4, 4, 6, 8, 9, 10, 12, 13, 15]
 
-    expect(mergeSortedArrays(arr1, arr2)).toEqual(
-      expect.arrayContaining(expected),
-    )
+    expect(mergeSortedArrays(arr1, arr2)).toEqual(expected)
   })
 
   it('should work with negative values', () => {
@@ -18,19 +16,15 @@ describe('merge two sorted arrays', () => {
 
     const expected = [-10, -5, -2, -2, -1, 0, 1, 2, 2, 5]
 
-    expect(mergeSortedArrays(arr1, arr2)).toEqual(
-      expect.arrayContaining(expected),
-    )
+    expect(mergeSortedArrays(arr1, arr2)).toEqual(expected)
   })
 
   it('should work with arrays of different length', () => {
     const arr1 = [0, 1, 20]
     const arr2 = [-1, 4, 7, 10]
 
-    const expected = [-1, 0, 1, 4, 7, 20]
+    const expected = [-1, 0, 1, 4, 7, 10, 20]
 
-    expect(mergeSortedArrays(arr1, arr2)).toEqual(
-      expect.arrayContaining(expected),
-    )
+    expect(mergeSortedArrays(arr1, arr2)).toEqual(expected)
   })
 })

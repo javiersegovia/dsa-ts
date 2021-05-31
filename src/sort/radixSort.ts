@@ -3,7 +3,7 @@ export const getDigitFromLastIndex = (number: number, index: number): number =>
 
 // StackOverflow alternative
 // I like mine because I think it is more readable
-// let getDigit = (number, index) => Math.floor(Math.abs(number) / Math.pow(10, index)) % 10
+// export const getDigitFromLastIndex = (number, index) => Math.floor(Math.abs(number) / Math.pow(10, index)) % 10
 
 export const digitCount = (number: number): number =>
   number !== 0 ? Math.abs(number).toString().length : 1
