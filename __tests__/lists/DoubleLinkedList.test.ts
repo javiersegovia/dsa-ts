@@ -1,8 +1,8 @@
-import { LinkedList } from '../../src/LinkedLists/LinkedList'
+import { LinkedList } from '../../src/lists/LinkedList'
 import {
   DoubleLinkedList,
   DoubleListNode,
-} from '../../src/LinkedLists/DoubleLinkedList'
+} from '../../src/lists/DoubleLinkedList'
 
 describe('DoubleLinkedList', () => {
   it('should create a double linked list with the default values', () => {

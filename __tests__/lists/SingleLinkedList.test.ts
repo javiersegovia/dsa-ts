@@ -1,5 +1,5 @@
-import { LinkedList, ListNode } from '../../src/LinkedLists/LinkedList'
-import { SingleLinkedList } from '../../src/LinkedLists/SingleLinkedList'
+import { LinkedList, ListNode } from '../../src/lists/LinkedList'
+import { SingleLinkedList } from '../../src/lists/SingleLinkedList'
 
 describe('SingleLinkedList', () => {
   it('should create a single list with the default values', () => {
