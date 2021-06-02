@@ -1,3 +1,5 @@
+import { swapIndex } from '../utils/swapIndex'
+
 export class MaxBinaryHeap {
   values: (string | number)[] = []
 
@@ -14,9 +16,7 @@ export class MaxBinaryHeap {
     const parentElement = this.values[parentIndex]
 
     if (element > parentElement) {
-      this.values[parentIndex] = element
-      this.values[index] = parentElement
-
+      swapIndex(this.values, index, parentIndex)
       this.bubbleUp(parentIndex)
     }
   }
@@ -47,14 +47,10 @@ export class MaxBinaryHeap {
     const rightChild = this.values[rightChildIndex]
 
     if (rightChild > leftChild && element < rightChild) {
-      this.values[rightChildIndex] = element
-      this.values[index] = rightChild
-
+      swapIndex(this.values, index, rightChildIndex)
       this.bubbleDown(rightChildIndex)
     } else if (element < leftChild) {
-      this.values[leftChildIndex] = element
-      this.values[index] = leftChild
-
+      swapIndex(this.values, index, leftChildIndex)
       this.bubbleDown(leftChildIndex)
     }
 
