@@ -33,5 +33,13 @@ describe('MaxBinaryHeap', () => {
       expect(heap.extractMax()).toEqual([55, 50, 35, 40, 20])
       expect(heap.extractMax()).toEqual([50, 40, 35, 20])
     })
+
+    it('should return an empty array if the length of the Heap was 0 or 1 before removal', () => {
+      const heap = new MaxBinaryHeap()
+
+      expect(heap.extractMax()).toEqual([])
+      heap.insert(55)
+      expect(heap.extractMax()).toEqual([])
+    })
   })
 })
